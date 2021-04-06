@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-dark flex w-full h-full px-3">
+    <div class="bg-dark flex w-full h-full px-3 overflow-y-auto">
         <main class="container mx-auto py-10 text-white h-full">
 
             <div v-if="thereWereBads" class="bg-teal-dark border-t-4 border-teal-darker rounded-b text-teal-900 px-4 py-3 shadow-md mb-10" role="alert">
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <div class="questions-container">
+            <div class="questions-container pb-10">
                 <QuestionResult 
                     v-for="(question, i) in questions"
                     :key="i"

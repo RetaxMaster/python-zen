@@ -1,6 +1,6 @@
 <template>
 
-    <div class="bg-dark flex w-full h-full px-3">
+    <div class="bg-dark flex w-full h-full px-3 overflow-y-auto">
         <main class="container mx-auto py-10 text-white h-full">
 
             <p>Con este sencillo test podrás repasar el zen de Python 🐍. No hay tiempo, no hay presiones, solo contesta las preguntas y aprende >:D.</p>
@@ -20,7 +20,7 @@
 
             </div>
 
-            <div class="flex justify-end mt-5">
+            <div class="flex justify-end mt-5 pb-10">
 
                 <button 
                     v-if="!activeFinishButton"
