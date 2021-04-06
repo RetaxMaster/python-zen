@@ -5,9 +5,18 @@
 
             <p>Con este sencillo test podrás repasar el zen de Python 🐍. No hay tiempo, no hay presiones, solo contesta las preguntas y aprende >:D.</p>
 
+            <div class="bg-red-light border-2 border-red-dark text-red-700 px-4 py-3 rounded relative mt-10 hidden" role="alert" ref="error">
+                <span class="block sm:inline font-bold">¡Selecciona una respuesta!</span>
+            </div>
+
             <div class="mt-10 flex flex-no-wrap overflow-hidden" ref="question-container">
                  
-                <Question v-for="question in questions" :key="question.id" :question="question" />
+                <Question 
+                    v-for="question in questions" 
+                    :key="question.id" 
+                    :question="question"
+                    @addAnswer="addAnswer"
+                />
 
             </div>
 
@@ -55,25 +64,64 @@ export default {
         Question
     },
 
+    computed: {
+
+        // Las respuestas que ya ha marcado el usuario
+        answers() {
+            return this.$store.state.answers;
+        }
+
+    },
+
     methods: {
 
         nextQuestion() {
 
-            const firstChild = this.$refs["question-container"].children[0];
-            this.questionNumber++;
+            if ( this.isQuestionAnswered() ) {
+                
+                const firstChild = this.$refs["question-container"].children[0];
+                this.questionNumber++;
+    
+                const marginLeft = 0 - (this.questionNumber * 100)
+                firstChild.style.marginLeft = `${marginLeft}%`;
+                this.$refs["error"].classList.add("hidden")
+    
+                const totalQuestions = this.questions.length;
+    
+                if (this.questionNumber + 1 == totalQuestions)
+                    this.activeFinishButton = true;
 
-            const marginLeft = 0 - (this.questionNumber * 100)
-            firstChild.style.marginLeft = `${marginLeft}%`;
-
-            const totalQuestions = this.questions.length;
-
-            if (this.questionNumber + 1 == totalQuestions)
-                this.activeFinishButton = true;
+            }
+            else {
+                this.$refs["error"].classList.remove("hidden")
+            }
 
         },
 
         finishTest() {
-            console.log("Has terminao uwu");
+
+            if ( this.isQuestionAnswered() ) {
+
+                this.$router.push({
+                    name: "Results"
+                });
+
+            }
+            else {
+                this.$refs["error"].classList.remove("hidden")
+            }
+            
+        },
+
+        addAnswer(data) {
+            this.$store.commit("addAnswer", data);
+        },
+
+        isQuestionAnswered() {
+
+            const currentQuestionId = this.questions[this.questionNumber].id;
+            return this.answers[`q-${currentQuestionId}`] !== undefined;
+
         }
 
     }

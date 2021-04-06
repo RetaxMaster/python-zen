@@ -58,9 +58,9 @@ let colors = {
 
   'red-darkest': '#3b0d0c',
   'red-darker': '#621b18',
-  'red-dark': '#cc1f1a',
+  'red-dark': '#b1403d',
   'red': '#e3342f',
-  'red-light': '#ef5753',
+  'red-light': '#e26561',
   'red-lighter': '#f9acaa',
   'red-lightest': '#fcebea',
 
@@ -133,6 +133,8 @@ let colors = {
   'primary': '#366d9c',
   'secondary': '#f7cc42',
   'dark': "#13193a",
+  'hover-dark': "#1f274e",
+  'dirty-white': "#eaeaea"
 
 }
 

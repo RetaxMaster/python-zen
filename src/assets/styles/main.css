@@ -62,9 +62,14 @@
   */
 
 .highlight:hover {
-    @apply bg-white text-black font-bold;
+    @apply bg-hover-dark;
+    
 }
 
 .highlight.active {
-    @apply bg-white text-black font-bold;
+    @apply bg-dirty-white text-black font-bold;
+}
+
+.bad {
+    @apply border-2 border-red-dark text-red-dark font-bold
 }

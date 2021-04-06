@@ -3,7 +3,7 @@
         
         <HeaderBar />
 
-        <Questions />
+        <router-view/>
 
     </div>
 </template>
@@ -11,15 +11,13 @@
 <script>
 
 import HeaderBar from '@/components/HeaderBar.vue'
-import Questions from '@/views/Questions/Index.vue'
 
 export default {
     
     name: "MainLayout",
 
     components: {
-        HeaderBar,
-        Questions
+        HeaderBar
     }
 
 }
